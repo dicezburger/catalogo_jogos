@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block corpo %}
+<form class="well form-horizontal"> {% csrf_token %}
+  <fieldset>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Nome do jogo</label> <input type="text" name ="name" id ="name" />
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Quantidade mínima de jogadores</label> <input type ="number" name ="min_players" id ="min_players" min="1" max="40" value="2"/>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Quantidade máxima de jogadores</label> <input type ="number" name ="max_players" id ="max_players" min="1" max="40" value="2"/>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Quantidade mínima para um bom jogo</label> <input type ="number" name ="min_best_for" id ="min_best_for" min="1" max="40" value="2" />
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Quantidade máxima para um bom jogo</label> <input type ="number" name ="max_best_for" id ="max_best_for" min="1" max="40" value="2"/>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">nível de dificuldade</label> 
+        <select name ="difficulty_level" id ="difficulty_level" >
+          <option value="">indiferente</option>
+          <option value="very_easy">muito fácil</option>
+          <option value="easy">fácil</option>
+          <option value="normal">normal</option>
+          <option value="hard">difícil</option>
+          <option value="very_hard">muito difícil</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Tipo de jogo</label> 
+      {% for item in mechanisms %}
+      <input type ="checkbox" name ="mechaninsm" id ="mechaninsm" value="{{ item.id}}" /> <label>{{ item.name }} </label>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">tempo de jogo </label> <input type ="range" name ="time" id ="time" value="45"  max="360" oninput="timeOutputId.value = time.value"/>
+        <output name="timeOutputName" id="timeOutputId">45</output> minutos
+    </div>
+
+  </fieldset>
+</form>
+{% endblock %}

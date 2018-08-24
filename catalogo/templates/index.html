@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block corpo %}
+    {% for item in games %}
+            {% if forloop.counter0|divisibleby:2 %}<div class="row row_items_pagina">{% endif %}
+                <div class="col-md-12 col-lg-6 pagina_items ">
+                <a href="/game/{{item.id}}">
+                {% if item.name %} <h1 class="nome">{{item.name}} </h1>{% endif %}
+                {% if item.image %} 
+                <div id="items" style="background: url({% static item.image %})" class="img-fluid w3-image" >
+                </div>
+                {% endif %}
+                    <div class="centered texto_items">
+                        <div class="blackO"> </div>                        
+                    {% if item.description %} <h4> {{ item.description }}</h4>{% endif %}
+                    </div>
+                </a>
+            </div>
+            {% if forloop.last %}</div> {% else %} {% if forloop.counter|divisibleby:2 %} </div>{% endif %}{% endif %}
+            
+                    
+            {% endfor %}
+{% endblock %}

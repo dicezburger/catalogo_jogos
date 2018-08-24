@@ -13,6 +13,6 @@ Mecânicas:
  
 
  {% if game.image %}
- <div><img src="{% static game.image %}" /> </div>
+ <div><img src="{% static '' %}{{ game.image }}"  /> </div>
  {% endif %}
  {% endblock %}

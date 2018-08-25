@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^all/', views.all),
     url(r'^game/(?P<name>[\w\-]+)/$',views.game, name= 'paginas'),
     url(r'^mecanica/(?P<name>[\w\-]+)/$',views.mechanisms, name= 'paginas'),
+    url(r'^games/',views.games, name= 'paginas'),
     url(r'^$', views.index),
 ]

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block corpo %}
+    <h2>Lista de jogos:</h2> 
+    <ul>
+    {% for item in games %}
+        <li><a href="/game/{{item.no_space_name}}">{{item.name}}</a></li>          
+                   
+    {% endfor %}
+    </ul>
+{% endblock %}

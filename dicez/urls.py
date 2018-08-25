@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^avancada/', views.advanced),
     url(r'^all/', views.all),
-    url(r'^game/(?P<_id>[\w\-]+)/$',views.game, name= 'paginas'),
+    url(r'^game/(?P<name>[\w\-]+)/$',views.game, name= 'paginas'),
+    url(r'^mecanica/(?P<name>[\w\-]+)/$',views.mechanisms, name= 'paginas'),
     url(r'^$', views.index),
 ]

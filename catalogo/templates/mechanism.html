@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block corpo %}
+    <h1>Mecânica: {{ mechanism.name }}</h1>
+    <h4>descrição: {{ mechanism.description }}</h4>
+    <h2>Lista de jogos desta mecânica:</h2> 
+    <ul>
+    {% for item in mechanism.games %}
+        <li><a href="/game/{{item.no_space_name}}">{{item.no_space_name}}</a></li>          
+                    
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -4,7 +4,7 @@
     {% for item in games %}
             {% if forloop.counter0|divisibleby:2 %}<div class="row row_items_pagina">{% endif %}
                 <div class="col-md-12 col-lg-6 pagina_items ">
-                <a href="/game/{{item.id}}">
+                <a href="/game/{{item.no_space_name}}">{{item.no_space_name}}
                 {% if item.name %} <h1 class="nome">{{item.name}} </h1>{% endif %}
                 {% if item.image %} 
                 <div id="items"><img src="{% static '' %}{{ item.image }}"  class="img-fluid w3-image" />

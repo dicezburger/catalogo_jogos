@@ -25,8 +25,12 @@ class Game(Model):
     def __str__(self):
         return self.name
 
+    def no_space_name(self):
+        return self.name.replace(' ', '-')
+
     def mechanisms(self):
         return GameXGameMechanism.objects.filter(game=self)
+
 
 class GameMechanism (Model):
     """docstring for Request"""
@@ -36,11 +40,19 @@ class GameMechanism (Model):
     def __str__(self):
         return self.name
 
+    def no_space_name(self):
+        return self.name.replace(' ', '-')
+
+    def games(self):
+        games = []
+        for i in self.gamexgamemechanism_set.all():
+            games.append(i.game)
+        return games
 
 class GameXGameMechanism (Model):
     """docstring for game_x_game_type"""
     game = ForeignKey(Game, on_delete=CASCADE)
-    game_mechanism  = ForeignKey(GameMechanism, on_delete=CASCADE)
+    game_mechanism = ForeignKey(GameMechanism, on_delete=CASCADE)
 
     def __str__(self):
         return (self.game.name + " - " + self.game_mechanism.name)

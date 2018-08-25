@@ -4,6 +4,7 @@ from django.template import RequestContext, loader, TemplateDoesNotExist
 from django.http import HttpResponse, JsonResponse
 from catalogo.models import Game, GameMechanism, GameXGameMechanism
 import json
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
@@ -24,12 +25,24 @@ def advanced(request):
     return HttpResponse(template.render(context=locals(), request=request))
 
 
-def game(request,_id):
+def game(request,name):
     mechanisms = GameMechanism.objects.all()
-    game = games = Game.objects.get(id=_id)
+    game = Game.objects.get(name=name.replace('-', ' '))
     context = RequestContext(request, {"mechanisms": mechanisms, "game":game})
     context.push(locals())
     template = loader.get_template('game.html')
+    return HttpResponse(template.render(context=locals(), request=request))
+
+def mechanisms(request,name):
+    mechanisms = GameMechanism.objects.all()
+    try:
+        mechanism = GameMechanism.objects.get(name=name.replace('-', ' '))
+    except ObjectDoesNotExist as e:
+        mechanism = {}    
+
+    context = RequestContext(request, {"mechanisms": mechanisms, "mechanism":mechanism})
+    context.push(locals())
+    template = loader.get_template('mechanism.html')
     return HttpResponse(template.render(context=locals(), request=request))
 
 
